@@ -1429,8 +1429,7 @@
 
 
         <button
-          class="disabled"
-          onclick="showComingSoon('Radiography')"
+          onclick="goToChapter2()"
         >
           02. Radiography
         </button>
@@ -1855,7 +1854,7 @@
 
           <button
             class="nav-button primary"
-            onclick="showComingSoon('Chapter 02: Radiography')"
+            onclick="goToChapter2()"
           >
             Chapter 02 →
           </button>
@@ -1901,6 +1900,256 @@
 
     </div>
 
+  </div>
+
+
+  <!-- =====================================================
+       CHAPTER 02
+  ====================================================== -->
+
+  <div
+    id="chapter2Page"
+    class="page"
+  >
+
+    <header class="lecture-header">
+      <div class="lecture-header-inner">
+        <div class="logo" onclick="showHome()">
+          RADIOLOGY<span>101</span>
+        </div>
+        <div class="lecture-header-title">
+          Introduction to Radiology
+        </div>
+      </div>
+    </header>
+
+    <div class="lecture-layout">
+
+      <aside class="sidebar">
+        <div class="sidebar-title">
+          COURSE CONTENTS
+        </div>
+
+        <button onclick="goToChapter1()">
+          01. 영상의학의 기본 원리
+        </button>
+
+        <button class="active" onclick="goToChapter2()">
+          02. Radiography
+        </button>
+
+        <button class="disabled" onclick="showComingSoon('CT')">
+          03. CT
+        </button>
+
+        <button class="disabled" onclick="showComingSoon('MRI')">
+          04. MRI
+        </button>
+
+        <button class="disabled" onclick="showComingSoon('Ultrasound')">
+          05. Ultrasound
+        </button>
+
+        <button class="disabled" onclick="showComingSoon('Nuclear Medicine')">
+          06. Nuclear Medicine
+        </button>
+
+        <button class="disabled" onclick="showComingSoon('Intervention')">
+          07. Intervention
+        </button>
+      </aside>
+
+      <main class="lecture-main">
+        <div class="chapter-label">
+          CHAPTER 02
+        </div>
+
+        <h1>
+          Radiography
+        </h1>
+
+        <p class="chapter-description">
+          X-ray가 만들어지고 인체를 통과해 2차원 투사 영상으로 기록되는 과정과
+          기본적인 영상 품질 및 방사선 안전 원칙을 알아봅니다.
+        </p>
+
+        <section id="radiographyPrinciple" class="lecture-content-section">
+          <h2>
+            1. Radiography의 영상 형성
+          </h2>
+
+          <p>
+            Radiography는 X-ray tube에서 발생한 photon을 인체에 조사하고,
+            조직을 통과한 photon의 분포를 detector에 기록하는 검사입니다.
+            한 방향에서 얻은 정보를 평면에 합치므로 깊이가 다른 구조가 서로 겹쳐 보입니다.
+          </p>
+
+          <p>
+            공기처럼 X-ray를 적게 감쇠시키는 부위는 detector에 많은 photon이 도달해
+            어둡게 보이고, 뼈나 금속처럼 감쇠가 큰 구조는 밝게 보입니다.
+          </p>
+
+          <div class="concept-box">
+            <strong>핵심 흐름</strong>
+            X-ray 발생 → 인체 조직에서 흡수·산란 → 남은 photon 검출 →
+            detector signal을 회색조 영상으로 변환
+          </div>
+        </section>
+
+        <section id="radiographyDensities" class="lecture-content-section">
+          <h2>
+            2. 다섯 가지 기본 영상 농도
+          </h2>
+
+          <p>
+            단순 X-ray에서는 물질의 밀도와 원자번호, 두께에 따른 attenuation 차이를
+            다섯 가지 대표적인 영상 농도로 구분할 수 있습니다.
+          </p>
+
+          <table class="hu-table">
+            <thead>
+              <tr>
+                <th>농도</th>
+                <th>대표 구조</th>
+                <th>영상 소견</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Air</td><td>폐, 장내 가스</td><td>가장 어둡게 보임</td></tr>
+              <tr><td>Fat</td><td>피하 지방</td><td>공기보다 약간 밝음</td></tr>
+              <tr><td>Soft tissue / Water</td><td>근육, 장기, 혈액</td><td>중간 회색</td></tr>
+              <tr><td>Bone / Calcium</td><td>뼈, 석회화</td><td>밝게 보임</td></tr>
+              <tr><td>Metal</td><td>보형물, 수술 기구</td><td>가장 밝게 보임</td></tr>
+            </tbody>
+          </table>
+
+          <div class="concept-box">
+            <strong>Silhouette sign</strong>
+            서로 맞닿은 두 구조의 영상 농도가 같으면 경계가 사라질 수 있습니다.
+            이 원리는 병변의 해부학적 위치를 추정하는 데 도움이 됩니다.
+          </div>
+        </section>
+
+        <section id="radiographyExposure" class="lecture-content-section">
+          <h2>
+            3. 촬영 조건과 영상 품질
+          </h2>
+
+          <h3>kVp와 mAs</h3>
+          <p>
+            kVp는 주로 X-ray photon의 에너지와 투과력에 영향을 줍니다.
+            mAs는 발생하는 photon의 양에 영향을 주며, detector에 도달하는 신호와
+            환자 선량에 직접적인 영향을 미칩니다.
+          </p>
+
+          <ul>
+            <li><strong>Contrast:</strong> 인접한 구조 사이의 밝기 차이</li>
+            <li><strong>Spatial resolution:</strong> 작은 구조를 분리해 표현하는 능력</li>
+            <li><strong>Noise:</strong> 신호의 무작위 변동으로 생기는 거친 영상</li>
+            <li><strong>Motion blur:</strong> 노출 중 환자나 장기의 움직임으로 생기는 흐림</li>
+          </ul>
+
+          <div class="concept-box">
+            <strong>적정 노출의 목표</strong>
+            진단에 필요한 영상 품질을 확보하면서 환자에게 불필요한 방사선 노출을
+            증가시키지 않는 균형이 중요합니다.
+          </div>
+        </section>
+
+        <section id="radiographyScatter" class="lecture-content-section">
+          <h2>
+            4. 산란선과 collimation
+          </h2>
+
+          <p>
+            인체에서 발생한 산란선은 원래 진행 방향을 벗어나 detector에 도달하며,
+            영상 전체에 불필요한 신호를 더해 contrast를 낮춥니다.
+            조사야가 넓고 피사체가 두꺼울수록 산란선이 증가합니다.
+          </p>
+
+          <ul>
+            <li><strong>Collimation:</strong> 필요한 부위로 조사야를 제한해 산란선과 선량을 줄임</li>
+            <li><strong>Grid:</strong> detector 앞에서 비스듬히 들어오는 산란선을 선택적으로 제거</li>
+            <li><strong>Air gap:</strong> 환자와 detector 사이 거리를 이용해 산란선 도달을 감소</li>
+          </ul>
+
+          <div class="concept-box">
+            <strong>주의할 점</strong>
+            Grid는 contrast를 개선하지만 detector에 도달하는 photon도 줄이므로,
+            충분한 노출을 위해 환자 선량이 증가할 수 있습니다.
+          </div>
+        </section>
+
+        <section id="radiographyProjection" class="lecture-content-section">
+          <h2>
+            5. Projection과 positioning
+          </h2>
+
+          <p>
+            같은 부위도 X-ray beam의 방향과 환자 자세에 따라 구조의 겹침과 확대가 달라집니다.
+            일반적인 흉부 촬영은 PA와 lateral projection을 함께 사용해 병변의 위치를 파악합니다.
+          </p>
+
+          <ul>
+            <li><strong>PA:</strong> beam이 뒤에서 앞으로 통과하며 표준 기립 흉부 촬영에 사용</li>
+            <li><strong>AP:</strong> beam이 앞에서 뒤로 통과하며 이동 촬영이나 누운 환자에 흔히 사용</li>
+            <li><strong>Lateral:</strong> 측면 정보를 제공해 전후 구조의 위치를 구분</li>
+          </ul>
+
+          <div class="concept-box">
+            <strong>확대에 대한 이해</strong>
+            detector에서 멀리 떨어진 구조일수록 더 크게 보입니다. AP 흉부 영상에서는
+            심장이 detector에서 멀어져 PA 영상보다 크게 보일 수 있습니다.
+          </div>
+        </section>
+
+        <section id="radiographySafety" class="lecture-content-section">
+          <h2>
+            6. 방사선 안전과 정리
+          </h2>
+
+          <p>
+            Radiography는 전리방사선을 사용하므로 검사의 임상적 필요성을 확인하고,
+            진단 목적을 달성할 수 있는 범위에서 노출을 합리적으로 최소화해야 합니다.
+          </p>
+
+          <ul>
+            <li><strong>Justification:</strong> 기대되는 임상적 이득이 방사선 위험보다 큰지 확인</li>
+            <li><strong>Optimization:</strong> 환자 크기와 검사 목적에 맞는 조건과 조사야 선택</li>
+            <li><strong>Time, distance, shielding:</strong> 작업자의 노출을 줄이는 기본 원칙</li>
+            <li><strong>임신 가능성:</strong> 검사 부위와 긴급성을 고려해 적절히 확인하고 판단</li>
+          </ul>
+
+          <div class="concept-box">
+            <strong>Chapter 02 핵심</strong>
+            단순 X-ray는 attenuation 차이를 2차원 투사 영상으로 표현합니다.
+            올바른 촬영 조건, positioning, 산란선 관리와 안전 원칙이 진단 품질을 좌우합니다.
+          </div>
+        </section>
+
+        <div class="chapter-nav">
+          <button class="nav-button" onclick="goToChapter1()">
+            ← Chapter 01
+          </button>
+          <button class="nav-button primary" onclick="showComingSoon('Chapter 03: CT')">
+            Chapter 03 →
+          </button>
+        </div>
+      </main>
+
+      <aside class="toc">
+        <div class="toc-title">
+          ON THIS PAGE
+        </div>
+        <a href="#radiographyPrinciple">영상 형성</a>
+        <a href="#radiographyDensities">기본 영상 농도</a>
+        <a href="#radiographyExposure">촬영 조건과 영상 품질</a>
+        <a href="#radiographyScatter">산란선과 collimation</a>
+        <a href="#radiographyProjection">Projection과 positioning</a>
+        <a href="#radiographySafety">방사선 안전과 정리</a>
+      </aside>
+
+    </div>
   </div>
 
 
@@ -1993,6 +2242,19 @@
     }
 
 
+    function goToChapter2() {
+
+      showPage("chapter2Page");
+
+      history.pushState(
+        { page: "chapter2" },
+        "",
+        "#chapter2"
+      );
+
+    }
+
+
     /* -------------------------
        MODAL
     -------------------------- */
@@ -2054,13 +2316,16 @@
       "popstate",
       function() {
 
-        if (
-          window.location.hash ===
-          "#chapter1"
-        ) {
+        if (window.location.hash === "#chapter1") {
 
           showPage(
             "chapter1Page"
+          );
+
+        } else if (window.location.hash === "#chapter2") {
+
+          showPage(
+            "chapter2Page"
           );
 
         } else {
@@ -2083,13 +2348,16 @@
       "DOMContentLoaded",
       function() {
 
-        if (
-          window.location.hash ===
-          "#chapter1"
-        ) {
+        if (window.location.hash === "#chapter1") {
 
           showPage(
             "chapter1Page"
+          );
+
+        } else if (window.location.hash === "#chapter2") {
+
+          showPage(
+            "chapter2Page"
           );
 
         } else {
