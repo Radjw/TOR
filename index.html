@@ -441,6 +441,129 @@
       color: #d5e6f4;
     }
 
+    /* =========================
+       PARTNERSHIP FORM
+    ========================= */
+
+    .partnership-section {
+      background: #eef4fa;
+    }
+
+    .partnership-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      gap: 54px;
+      align-items: start;
+    }
+
+    .partnership-intro h2 {
+      margin-bottom: 14px;
+      color: #101828;
+      font-size: 34px;
+      letter-spacing: -1px;
+    }
+
+    .partnership-intro p {
+      margin-bottom: 22px;
+      color: #667085;
+    }
+
+    .partnership-note {
+      padding: 18px;
+      background: #e4efff;
+      color: #344054;
+      border-radius: 12px;
+      font-size: 14px;
+    }
+
+    .partnership-form {
+      padding: 32px;
+      background: white;
+      border: 1px solid #e4e7ec;
+      border-radius: 16px;
+      box-shadow: 0 10px 35px rgba(16, 24, 40, 0.07);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .form-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label {
+      color: #344054;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      padding: 12px 14px;
+      color: #101828;
+      background: white;
+      border: 1px solid #d0d5dd;
+      border-radius: 8px;
+      font: inherit;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-field textarea {
+      min-height: 145px;
+      resize: vertical;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: #2979ff;
+      box-shadow: 0 0 0 3px rgba(41, 121, 255, 0.12);
+    }
+
+    .form-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .form-actions .button {
+      border: 0;
+      font-size: 15px;
+    }
+
+    .form-actions .button:disabled {
+      opacity: 0.65;
+      cursor: wait;
+      transform: none;
+    }
+
+    .form-status {
+      min-height: 22px;
+      color: #667085;
+      font-size: 14px;
+    }
+
+    .form-status.success {
+      color: #067647;
+    }
+
+    .form-status.error {
+      color: #b42318;
+    }
+
     .home-footer {
       margin-top: 80px;
       padding: 35px 0;
@@ -844,7 +967,8 @@
 
       .overview-grid,
       .card-grid,
-      .learning-grid {
+      .learning-grid,
+      .partnership-layout {
         grid-template-columns: 1fr;
       }
 
@@ -917,6 +1041,19 @@
         align-items: flex-start;
       }
 
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .partnership-form {
+        padding: 24px;
+      }
+
+      .form-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
       .chapter-nav {
         gap: 10px;
       }
@@ -948,6 +1085,7 @@
           <a href="#modalities">영상검사</a>
           <a href="#learning">학습목표</a>
           <a href="#start">강의 시작</a>
+          <a href="#partnership">제휴문의</a>
         </nav>
 
       </div>
@@ -1355,6 +1493,90 @@
           </button>
 
         </div>
+
+      </div>
+    </section>
+
+
+    <!-- PARTNERSHIP -->
+
+    <section
+      class="home-section partnership-section"
+      id="partnership"
+    >
+      <div class="container partnership-layout">
+
+        <div class="partnership-intro">
+          <div class="section-title">
+            <small>PARTNERSHIP</small>
+            <h2>제휴문의</h2>
+          </div>
+
+          <p>
+            교육 콘텐츠 협업, 강의 및 행사, 기관 제휴 등 다양한 제안을 기다립니다.
+            내용을 남겨주시면 확인 후 회신드리겠습니다.
+          </p>
+
+          <div class="partnership-note">
+            문의 목적과 기대하는 협업 방식, 희망 일정이 있다면 함께 적어주세요.
+            보다 빠르고 정확한 검토에 도움이 됩니다.
+          </div>
+        </div>
+
+        <form
+          class="partnership-form"
+          id="partnershipForm"
+          action="https://formspree.io/f/xrpzogvb"
+          method="POST"
+        >
+          <input type="hidden" name="_subject" value="RADIOLOGY101 제휴문의" />
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" hidden />
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="contactName">이름 <span aria-hidden="true">*</span></label>
+              <input id="contactName" name="name" type="text" autocomplete="name" required />
+            </div>
+
+            <div class="form-field">
+              <label for="contactEmail">이메일 <span aria-hidden="true">*</span></label>
+              <input id="contactEmail" name="email" type="email" autocomplete="email" required />
+            </div>
+
+            <div class="form-field">
+              <label for="contactOrganization">소속</label>
+              <input id="contactOrganization" name="organization" type="text" autocomplete="organization" />
+            </div>
+
+            <div class="form-field">
+              <label for="contactType">문의 유형 <span aria-hidden="true">*</span></label>
+              <select id="contactType" name="inquiry_type" required>
+                <option value="" selected disabled>선택해 주세요</option>
+                <option value="교육 콘텐츠 협업">교육 콘텐츠 협업</option>
+                <option value="강의 및 행사">강의 및 행사</option>
+                <option value="기관 제휴">기관 제휴</option>
+                <option value="기타">기타</option>
+              </select>
+            </div>
+
+            <div class="form-field full">
+              <label for="contactMessage">문의 내용 <span aria-hidden="true">*</span></label>
+              <textarea
+                id="contactMessage"
+                name="message"
+                placeholder="제안 내용과 희망 일정을 자유롭게 작성해 주세요."
+                required
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="button" id="partnershipSubmit" type="submit">
+              문의 보내기
+            </button>
+            <p class="form-status" id="partnershipStatus" role="status" aria-live="polite"></p>
+          </div>
+        </form>
 
       </div>
     </section>
@@ -2253,6 +2475,49 @@
       );
 
     }
+
+
+    /* -------------------------
+       PARTNERSHIP FORM
+    -------------------------- */
+
+    const partnershipForm = document.getElementById("partnershipForm");
+
+    partnershipForm.addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      const submitButton = document.getElementById("partnershipSubmit");
+      const status = document.getElementById("partnershipStatus");
+
+      submitButton.disabled = true;
+      submitButton.innerText = "전송 중...";
+      status.className = "form-status";
+      status.innerText = "";
+
+      try {
+        const response = await fetch(partnershipForm.action, {
+          method: "POST",
+          body: new FormData(partnershipForm),
+          headers: {
+            "Accept": "application/json"
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error("Form submission failed");
+        }
+
+        partnershipForm.reset();
+        status.className = "form-status success";
+        status.innerText = "문의가 전송되었습니다. 감사합니다.";
+      } catch (error) {
+        status.className = "form-status error";
+        status.innerText = "전송하지 못했습니다. 잠시 후 다시 시도해 주세요.";
+      } finally {
+        submitButton.disabled = false;
+        submitButton.innerText = "문의 보내기";
+      }
+    });
 
 
     /* -------------------------
