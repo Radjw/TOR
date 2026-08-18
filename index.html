@@ -1,0 +1,2135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>영상의학개론 | Introduction to Radiology</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans KR",
+        Arial,
+        sans-serif;
+
+      background: #f8fafc;
+      color: #1d2939;
+      line-height: 1.65;
+    }
+
+    button,
+    a {
+      font: inherit;
+    }
+
+    button {
+      border: none;
+    }
+
+    /* =========================
+       COMMON
+    ========================= */
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 13px 20px;
+      border-radius: 9px;
+
+      background: #2979ff;
+      color: white;
+
+      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer;
+
+      transition:
+        transform 0.2s,
+        background 0.2s,
+        box-shadow 0.2s;
+    }
+
+    .button:hover {
+      background: #1769e0;
+      transform: translateY(-1px);
+      box-shadow: 0 7px 20px rgba(41, 121, 255, 0.18);
+    }
+
+    .button.secondary {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      margin-left: 10px;
+    }
+
+    /* =========================
+       HOME HEADER
+    ========================= */
+
+    .home-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(10px);
+
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .home-nav {
+      height: 68px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      color: #173f5f;
+      cursor: pointer;
+      letter-spacing: -0.3px;
+    }
+
+    .logo span {
+      color: #2979ff;
+    }
+
+    .home-nav-links a {
+      margin-left: 24px;
+
+      text-decoration: none;
+      color: #475467;
+
+      font-size: 14px;
+      font-weight: 600;
+
+      transition: color 0.2s;
+    }
+
+    .home-nav-links a:hover {
+      color: #2979ff;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 560px;
+
+      display: flex;
+      align-items: center;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(5, 24, 46, 0.97),
+          rgba(14, 54, 86, 0.83)
+        ),
+        url("https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&w=1600&q=80")
+        center / cover;
+
+      color: white;
+    }
+
+    .hero-inner {
+      padding-top: 90px;
+      padding-bottom: 90px;
+    }
+
+    .hero-tag {
+      display: inline-block;
+
+      margin-bottom: 20px;
+      padding: 7px 12px;
+
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 20px;
+
+      background: rgba(255, 255, 255, 0.08);
+
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      max-width: 800px;
+
+      font-size: clamp(40px, 6vw, 68px);
+      line-height: 1.08;
+
+      letter-spacing: -2px;
+
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: #71b7ff;
+    }
+
+    .hero p {
+      max-width: 650px;
+
+      margin-bottom: 32px;
+
+      color: #dce9f5;
+      font-size: 18px;
+    }
+
+    /* =========================
+       HOME SECTIONS
+    ========================= */
+
+    .home-section {
+      padding: 90px 0;
+    }
+
+    .section-title {
+      margin-bottom: 42px;
+    }
+
+    .section-title small {
+      display: block;
+
+      margin-bottom: 8px;
+
+      color: #2979ff;
+
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .section-title h2 {
+      margin-bottom: 10px;
+
+      color: #101828;
+
+      font-size: 34px;
+      letter-spacing: -1px;
+    }
+
+    .section-title p {
+      max-width: 650px;
+      color: #667085;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      gap: 50px;
+      align-items: center;
+    }
+
+    .overview-text h3 {
+      margin-bottom: 16px;
+
+      font-size: 27px;
+      line-height: 1.35;
+    }
+
+    .overview-text p {
+      margin-bottom: 16px;
+      color: #667085;
+    }
+
+    .overview-box {
+      padding: 30px;
+
+      background: white;
+
+      border: 1px solid #e4e7ec;
+      border-radius: 16px;
+
+      box-shadow: 0 8px 30px rgba(16, 24, 40, 0.06);
+    }
+
+    .overview-item {
+      padding: 16px 0;
+      border-bottom: 1px solid #eaecf0;
+    }
+
+    .overview-item:last-child {
+      border-bottom: none;
+    }
+
+    .overview-item strong {
+      display: block;
+
+      margin-bottom: 3px;
+
+      color: #101828;
+    }
+
+    .overview-item span {
+      color: #667085;
+      font-size: 14px;
+    }
+
+    .modalities {
+      background: #eef4fa;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 20px;
+    }
+
+    .card {
+      padding: 26px;
+
+      background: white;
+
+      border: 1px solid #e4e7ec;
+      border-radius: 14px;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.22s,
+        box-shadow 0.22s,
+        border-color 0.22s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+
+      border-color: #a7c9ff;
+
+      box-shadow: 0 15px 35px rgba(16, 24, 40, 0.08);
+    }
+
+    .card-icon {
+      width: 46px;
+      height: 46px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-bottom: 18px;
+
+      background: #eaf2ff;
+
+      border-radius: 10px;
+
+      font-size: 22px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+
+      color: #101828;
+      font-size: 19px;
+    }
+
+    .card p {
+      color: #667085;
+      font-size: 14px;
+    }
+
+    .learning-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 16px;
+    }
+
+    .learning-item {
+      display: flex;
+      gap: 14px;
+
+      padding: 22px;
+
+      background: white;
+
+      border: 1px solid #e4e7ec;
+      border-radius: 12px;
+    }
+
+    .number {
+      flex-shrink: 0;
+
+      width: 32px;
+      height: 32px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #173f5f;
+      color: white;
+
+      border-radius: 50%;
+
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .learning-item h4 {
+      margin-bottom: 4px;
+    }
+
+    .learning-item p {
+      color: #667085;
+      font-size: 14px;
+    }
+
+    .cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 30px;
+
+      padding: 50px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #153a59,
+          #225f8c
+        );
+
+      color: white;
+
+      border-radius: 20px;
+    }
+
+    .cta h2 {
+      margin-bottom: 8px;
+      font-size: 30px;
+    }
+
+    .cta p {
+      color: #d5e6f4;
+    }
+
+    .home-footer {
+      margin-top: 80px;
+      padding: 35px 0;
+
+      background: white;
+
+      border-top: 1px solid #e4e7ec;
+
+      color: #667085;
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    .modal-bg {
+      display: none;
+
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+
+      padding: 20px;
+
+      align-items: center;
+      justify-content: center;
+
+      background: rgba(16, 24, 40, 0.65);
+    }
+
+    .modal-bg.active {
+      display: flex;
+    }
+
+    .modal {
+      width: 100%;
+      max-width: 500px;
+
+      padding: 30px;
+
+      background: white;
+
+      border-radius: 16px;
+
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal h3 {
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    .modal p {
+      margin-bottom: 25px;
+      color: #667085;
+    }
+
+    /* =========================
+       LECTURE PAGE
+    ========================= */
+
+    .lecture-header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+
+      height: 66px;
+
+      display: flex;
+      align-items: center;
+
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(10px);
+
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .lecture-header-inner {
+      width: 100%;
+      max-width: 1280px;
+
+      margin: 0 auto;
+      padding: 0 24px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .lecture-header-title {
+      color: #667085;
+      font-size: 14px;
+    }
+
+    .lecture-layout {
+      width: 100%;
+      max-width: 1280px;
+
+      margin: 0 auto;
+
+      display: grid;
+      grid-template-columns: 230px minmax(0, 1fr) 200px;
+
+      gap: 40px;
+
+      padding: 50px 24px 100px;
+    }
+
+    /* LEFT SIDEBAR */
+
+    .sidebar {
+      position: sticky;
+      top: 100px;
+
+      align-self: start;
+    }
+
+    .sidebar-title {
+      margin-bottom: 14px;
+
+      color: #98a2b3;
+
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+    }
+
+    .sidebar button {
+      width: 100%;
+
+      display: block;
+
+      margin-bottom: 4px;
+      padding: 10px 12px;
+
+      background: transparent;
+      color: #475467;
+
+      border-radius: 8px;
+
+      text-align: left;
+      font-size: 14px;
+
+      cursor: pointer;
+
+      transition:
+        background 0.2s,
+        color 0.2s;
+    }
+
+    .sidebar button:hover {
+      background: #eef4ff;
+      color: #2979ff;
+    }
+
+    .sidebar button.active {
+      background: #eaf2ff;
+      color: #1769e0;
+
+      font-weight: 700;
+    }
+
+    .sidebar button.disabled {
+      color: #b7bdc8;
+      cursor: default;
+    }
+
+    .sidebar button.disabled:hover {
+      background: transparent;
+      color: #b7bdc8;
+    }
+
+    /* MAIN LECTURE */
+
+    .chapter-label {
+      margin-bottom: 8px;
+
+      color: #2979ff;
+
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .lecture-main h1 {
+      margin-bottom: 16px;
+
+      color: #101828;
+
+      font-size: 40px;
+      line-height: 1.25;
+
+      letter-spacing: -1.5px;
+    }
+
+    .chapter-description {
+      margin-bottom: 45px;
+      padding-bottom: 30px;
+
+      border-bottom: 1px solid #e4e7ec;
+
+      color: #667085;
+
+      font-size: 18px;
+    }
+
+    .lecture-content-section {
+      padding-top: 10px;
+      margin-bottom: 55px;
+      scroll-margin-top: 95px;
+    }
+
+    .lecture-content-section h2 {
+      margin-bottom: 16px;
+
+      color: #101828;
+
+      font-size: 26px;
+      letter-spacing: -0.5px;
+    }
+
+    .lecture-content-section h3 {
+      margin-top: 28px;
+      margin-bottom: 10px;
+
+      color: #1d2939;
+
+      font-size: 19px;
+    }
+
+    .lecture-content-section p {
+      margin-bottom: 18px;
+      color: #475467;
+    }
+
+    .lecture-content-section ul {
+      margin: 10px 0 20px 22px;
+      color: #475467;
+    }
+
+    .lecture-content-section li {
+      margin-bottom: 8px;
+    }
+
+    .concept-box {
+      margin: 28px 0;
+      padding: 24px;
+
+      background: white;
+
+      border: 1px solid #dfe4ea;
+      border-left: 4px solid #2979ff;
+
+      border-radius: 10px;
+    }
+
+    .concept-box strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .hu-table {
+      width: 100%;
+
+      margin-top: 18px;
+
+      border-collapse: collapse;
+
+      background: white;
+
+      border-radius: 10px;
+      overflow: hidden;
+
+      border: 1px solid #e4e7ec;
+    }
+
+    .hu-table th,
+    .hu-table td {
+      padding: 12px 16px;
+
+      border-bottom: 1px solid #eaecf0;
+
+      text-align: left;
+    }
+
+    .hu-table th {
+      background: #f2f4f7;
+      color: #344054;
+    }
+
+    .hu-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+
+      margin-top: 75px;
+      padding-top: 30px;
+
+      border-top: 1px solid #e4e7ec;
+    }
+
+    .nav-button {
+      padding: 12px 17px;
+
+      background: white;
+      color: #344054;
+
+      border: 1px solid #d0d5dd;
+      border-radius: 8px;
+
+      cursor: pointer;
+
+      font-weight: 600;
+
+      transition:
+        background 0.2s,
+        border-color 0.2s;
+    }
+
+    .nav-button:hover {
+      background: #f9fafb;
+      border-color: #98a2b3;
+    }
+
+    .nav-button.primary {
+      background: #2979ff;
+      color: white;
+      border-color: #2979ff;
+    }
+
+    .nav-button.primary:hover {
+      background: #1769e0;
+    }
+
+    /* RIGHT TOC */
+
+    .toc {
+      position: sticky;
+      top: 100px;
+
+      align-self: start;
+
+      padding-left: 20px;
+
+      border-left: 1px solid #e4e7ec;
+    }
+
+    .toc-title {
+      margin-bottom: 14px;
+
+      color: #344054;
+
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+    }
+
+    .toc a {
+      display: block;
+
+      margin-bottom: 10px;
+
+      color: #667085;
+
+      text-decoration: none;
+      font-size: 13px;
+
+      transition: color 0.2s;
+    }
+
+    .toc a:hover {
+      color: #2979ff;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 950px) {
+      .lecture-layout {
+        grid-template-columns: 190px 1fr;
+      }
+
+      .toc {
+        display: none;
+      }
+    }
+
+    @media (max-width: 800px) {
+      .home-nav-links {
+        display: none;
+      }
+
+      .overview-grid,
+      .card-grid,
+      .learning-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 500px;
+      }
+
+      .cta {
+        flex-direction: column;
+        align-items: flex-start;
+
+        padding: 35px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .lecture-layout {
+        grid-template-columns: 1fr;
+
+        padding-top: 30px;
+      }
+
+      .sidebar {
+        position: static;
+
+        display: flex;
+        gap: 8px;
+
+        overflow-x: auto;
+
+        padding-bottom: 10px;
+      }
+
+      .sidebar-title {
+        display: none;
+      }
+
+      .sidebar button {
+        width: auto;
+        flex-shrink: 0;
+
+        white-space: nowrap;
+      }
+
+      .lecture-main h1 {
+        font-size: 33px;
+      }
+
+      .lecture-header-title {
+        display: none;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .button.secondary {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .chapter-nav {
+        gap: 10px;
+      }
+
+      .nav-button {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =====================================================
+       HOME PAGE
+  ====================================================== -->
+
+  <div id="homePage" class="page active">
+
+    <header class="home-header">
+      <div class="container home-nav">
+
+        <div class="logo" onclick="showHome()">
+          RADIOLOGY<span>101</span>
+        </div>
+
+        <nav class="home-nav-links">
+          <a href="#overview">개요</a>
+          <a href="#modalities">영상검사</a>
+          <a href="#learning">학습목표</a>
+          <a href="#start">강의 시작</a>
+        </nav>
+
+      </div>
+    </header>
+
+
+    <!-- HERO -->
+
+    <main class="hero">
+      <div class="container hero-inner">
+
+        <div class="hero-tag">
+          INTRODUCTION TO RADIOLOGY
+        </div>
+
+        <h1>
+          영상으로 이해하는<br />
+          <span>의학의 새로운 시선</span>
+        </h1>
+
+        <p>
+          X-ray부터 CT, MRI, Ultrasound까지.
+          영상의학의 기본 원리와 임상적 활용을 이해하기 위한
+          영상의학개론 과정입니다.
+        </p>
+
+        <div class="hero-actions">
+
+          <button
+            class="button"
+            onclick="goToChapter1()"
+          >
+            Chapter 01 시작 →
+          </button>
+
+          <a
+            class="button secondary"
+            href="#overview"
+          >
+            과정 소개
+          </a>
+
+        </div>
+
+      </div>
+    </main>
+
+
+    <!-- OVERVIEW -->
+
+    <section
+      class="home-section"
+      id="overview"
+    >
+      <div class="container">
+
+        <div class="section-title">
+          <small>COURSE OVERVIEW</small>
+
+          <h2>
+            영상의학이란?
+          </h2>
+
+          <p>
+            의료영상을 이용하여 인체의 구조와 질병을 진단하고,
+            영상 유도 하에 치료를 시행하는 의학 분야입니다.
+          </p>
+        </div>
+
+
+        <div class="overview-grid">
+
+          <div class="overview-text">
+
+            <h3>
+              보이지 않는 것을<br />
+              영상으로 확인합니다.
+            </h3>
+
+            <p>
+              영상의학은 현대 의학의 진단 과정에서
+              핵심적인 역할을 합니다.
+              단순 X-ray뿐 아니라 CT, MRI, Ultrasound 및
+              다양한 영상유도 시술이 실제 임상에서 활용되고 있습니다.
+            </p>
+
+            <p>
+              본 과정에서는 영상검사가 만들어지는 기본 원리와
+              각각의 검사 방법이 가진 장점과 한계를 살펴봅니다.
+            </p>
+
+          </div>
+
+
+          <div class="overview-box">
+
+            <div class="overview-item">
+              <strong>대상</strong>
+              <span>의과대학생 · 전공의 · 영상의학 입문자</span>
+            </div>
+
+            <div class="overview-item">
+              <strong>난이도</strong>
+              <span>Beginner</span>
+            </div>
+
+            <div class="overview-item">
+              <strong>주요 내용</strong>
+              <span>
+                X-ray · CT · MRI · Ultrasound · Intervention
+              </span>
+            </div>
+
+            <div class="overview-item">
+              <strong>학습 목표</strong>
+              <span>
+                영상검사의 원리와 기본적인 해석 방법 이해
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- MODALITIES -->
+
+    <section
+      class="home-section modalities"
+      id="modalities"
+    >
+      <div class="container">
+
+        <div class="section-title">
+
+          <small>
+            IMAGING MODALITIES
+          </small>
+
+          <h2>
+            주요 영상검사
+          </h2>
+
+          <p>
+            영상의학에서 가장 기본적으로 사용되는 검사 방법입니다.
+            각 항목을 클릭하면 간단한 설명을 확인할 수 있습니다.
+          </p>
+
+        </div>
+
+
+        <div class="card-grid">
+
+          <div
+            class="card"
+            onclick="openModal(
+              'Radiography',
+              'X-ray는 전리방사선을 이용하여 인체 내부 구조를 투영영상으로 표현합니다. 흉부, 뼈 및 관절 평가에서 가장 기본적인 영상검사입니다.'
+            )"
+          >
+            <div class="card-icon">☢</div>
+
+            <h3>Radiography</h3>
+
+            <p>
+              X-ray를 이용한 가장 기본적인 영상검사.
+              빠르고 접근성이 높습니다.
+            </p>
+          </div>
+
+
+          <div
+            class="card"
+            onclick="openModal(
+              'CT',
+              'CT는 X-ray를 여러 방향에서 조사하고 컴퓨터로 재구성하여 인체의 단면 영상을 획득합니다. 빠른 촬영과 높은 공간해상도가 장점입니다.'
+            )"
+          >
+            <div class="card-icon">◉</div>
+
+            <h3>CT</h3>
+
+            <p>
+              여러 방향의 X-ray attenuation 정보를
+              재구성하여 단면 영상을 생성합니다.
+            </p>
+          </div>
+
+
+          <div
+            class="card"
+            onclick="openModal(
+              'MRI',
+              'MRI는 강한 자기장과 RF pulse를 이용하여 영상을 생성합니다. 연부조직 대조도가 뛰어나 뇌, 척추, 근골격계 평가에 매우 유용합니다.'
+            )"
+          >
+            <div class="card-icon">◌</div>
+
+            <h3>MRI</h3>
+
+            <p>
+              자기장과 RF signal을 이용하며
+              뛰어난 연부조직 대조도를 제공합니다.
+            </p>
+          </div>
+
+
+          <div
+            class="card"
+            onclick="openModal(
+              'Ultrasound',
+              'Ultrasound는 고주파 음파의 반사를 이용하여 실시간 영상을 획득합니다. 방사선 노출이 없고 실시간 평가가 가능하다는 장점이 있습니다.'
+            )"
+          >
+            <div class="card-icon">⌁</div>
+
+            <h3>Ultrasound</h3>
+
+            <p>
+              음파를 이용하여 실시간으로
+              장기 및 혈류를 평가합니다.
+            </p>
+          </div>
+
+
+          <div
+            class="card"
+            onclick="openModal(
+              'Nuclear Medicine',
+              '핵의학은 방사성의약품의 체내 분포를 영상화하여 장기의 생리적 기능과 대사를 평가합니다. PET과 SPECT 등이 대표적입니다.'
+            )"
+          >
+            <div class="card-icon">✦</div>
+
+            <h3>Nuclear Medicine</h3>
+
+            <p>
+              방사성의약품을 이용하여
+              장기의 기능과 대사를 평가합니다.
+            </p>
+          </div>
+
+
+          <div
+            class="card"
+            onclick="openModal(
+              'Interventional Radiology',
+              'Interventional Radiology는 영상 유도 하에 카테터, 바늘 등을 이용하여 진단 또는 치료를 시행하는 분야입니다.'
+            )"
+          >
+            <div class="card-icon">＋</div>
+
+            <h3>Intervention</h3>
+
+            <p>
+              영상 유도 하에 최소침습적인
+              진단 및 치료를 시행합니다.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- LEARNING -->
+
+    <section
+      class="home-section"
+      id="learning"
+    >
+      <div class="container">
+
+        <div class="section-title">
+
+          <small>
+            LEARNING OBJECTIVES
+          </small>
+
+          <h2>
+            학습 목표
+          </h2>
+
+        </div>
+
+
+        <div class="learning-grid">
+
+          <div class="learning-item">
+
+            <div class="number">
+              1
+            </div>
+
+            <div>
+              <h4>
+                영상검사의 기본 원리 이해
+              </h4>
+
+              <p>
+                X-ray, CT, MRI, Ultrasound가
+                영상을 생성하는 기본적인 원리를 이해합니다.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="learning-item">
+
+            <div class="number">
+              2
+            </div>
+
+            <div>
+              <h4>
+                정상 해부학 이해
+              </h4>
+
+              <p>
+                다양한 영상검사에서 정상적인
+                인체 구조를 확인합니다.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="learning-item">
+
+            <div class="number">
+              3
+            </div>
+
+            <div>
+              <h4>
+                영상 해석의 기본 접근
+              </h4>
+
+              <p>
+                병변의 위치, 형태, density 및
+                signal intensity를 체계적으로 평가합니다.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="learning-item">
+
+            <div class="number">
+              4
+            </div>
+
+            <div>
+              <h4>
+                적절한 검사 선택
+              </h4>
+
+              <p>
+                임상 상황에 따라 어떤 영상검사가
+                적절한지 판단하는 기본 원칙을 익힙니다.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- START -->
+
+    <section
+      class="home-section"
+      id="start"
+    >
+      <div class="container">
+
+        <div class="cta">
+
+          <div>
+
+            <h2>
+              영상의학 공부를 시작해보세요.
+            </h2>
+
+            <p>
+              Chapter 01. 영상의학의 기본 원리부터 시작합니다.
+            </p>
+
+          </div>
+
+          <button
+            class="button"
+            onclick="goToChapter1()"
+          >
+            Chapter 01 시작 →
+          </button>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <footer class="home-footer">
+
+      <div class="container footer-inner">
+
+        <div>
+          RADIOLOGY101
+        </div>
+
+        <div>
+          Introduction to Radiology · Educational Purpose
+        </div>
+
+      </div>
+
+    </footer>
+
+  </div>
+
+
+  <!-- =====================================================
+       CHAPTER 01
+  ====================================================== -->
+
+  <div
+    id="chapter1Page"
+    class="page"
+  >
+
+    <header class="lecture-header">
+
+      <div class="lecture-header-inner">
+
+        <div
+          class="logo"
+          onclick="showHome()"
+        >
+          RADIOLOGY<span>101</span>
+        </div>
+
+        <div class="lecture-header-title">
+          Introduction to Radiology
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <div class="lecture-layout">
+
+
+      <!-- LEFT SIDEBAR -->
+
+      <aside class="sidebar">
+
+        <div class="sidebar-title">
+          COURSE CONTENTS
+        </div>
+
+
+        <button
+          class="active"
+          onclick="goToChapter1()"
+        >
+          01. 영상의학의 기본 원리
+        </button>
+
+
+        <button
+          class="disabled"
+          onclick="showComingSoon('Radiography')"
+        >
+          02. Radiography
+        </button>
+
+
+        <button
+          class="disabled"
+          onclick="showComingSoon('CT')"
+        >
+          03. CT
+        </button>
+
+
+        <button
+          class="disabled"
+          onclick="showComingSoon('MRI')"
+        >
+          04. MRI
+        </button>
+
+
+        <button
+          class="disabled"
+          onclick="showComingSoon('Ultrasound')"
+        >
+          05. Ultrasound
+        </button>
+
+
+        <button
+          class="disabled"
+          onclick="showComingSoon('Nuclear Medicine')"
+        >
+          06. Nuclear Medicine
+        </button>
+
+
+        <button
+          class="disabled"
+          onclick="showComingSoon('Intervention')"
+        >
+          07. Intervention
+        </button>
+
+      </aside>
+
+
+      <!-- MAIN -->
+
+      <main class="lecture-main">
+
+        <div class="chapter-label">
+          CHAPTER 01
+        </div>
+
+        <h1>
+          영상의학의 기본 원리
+        </h1>
+
+        <p class="chapter-description">
+          영상의학에서 사용되는 주요 영상 기법과
+          의료영상이 만들어지는 기본적인 원리를 알아봅니다.
+        </p>
+
+
+        <!-- 1 -->
+
+        <section
+          id="lectureIntro"
+          class="lecture-content-section"
+        >
+
+          <h2>
+            1. 영상의학이란?
+          </h2>
+
+          <p>
+            영상의학은 다양한 물리적 에너지를 이용하여
+            인체 내부의 구조와 기능을 영상화하고,
+            이를 통해 질병을 진단하거나 치료하는 의학 분야입니다.
+          </p>
+
+          <p>
+            영상검사는 단순히 인체를 사진처럼 보여주는 것이 아니라,
+            서로 다른 조직이 물리적 에너지와 상호작용하는 차이를
+            영상으로 변환하는 과정이라고 이해할 수 있습니다.
+          </p>
+
+          <div class="concept-box">
+
+            <strong>
+              기본 개념
+            </strong>
+
+            영상의학에서는 검사 방법에 따라
+            X-ray attenuation, proton relaxation,
+            acoustic reflection 등의 서로 다른 물리적 특성을
+            영상 contrast로 이용합니다.
+
+          </div>
+
+        </section>
+
+
+        <!-- 2 -->
+
+        <section
+          id="lectureXray"
+          class="lecture-content-section"
+        >
+
+          <h2>
+            2. X-ray와 attenuation
+          </h2>
+
+          <p>
+            Radiography는 X-ray photon이 인체를 통과하면서
+            조직에 따라 서로 다른 정도로 attenuation되는 현상을
+            이용하여 영상을 만듭니다.
+          </p>
+
+          <p>
+            X-ray가 조직을 통과하는 동안 일부 photon은 흡수되거나
+            산란되고, 나머지 photon이 detector에 도달합니다.
+            조직마다 detector에 도달하는 photon의 양이 달라지기 때문에
+            영상에서 밝기 차이가 만들어집니다.
+          </p>
+
+
+          <h3>
+            Attenuation에 영향을 주는 요소
+          </h3>
+
+          <ul>
+            <li>
+              조직의 밀도
+            </li>
+
+            <li>
+              조직의 두께
+            </li>
+
+            <li>
+              원자번호
+            </li>
+
+            <li>
+              X-ray photon energy
+            </li>
+          </ul>
+
+
+          <div class="concept-box">
+
+            <strong>
+              Radiopacity
+            </strong>
+
+            X-ray를 많이 attenuation시키는 구조는
+            detector에 도달하는 photon이 감소하기 때문에
+            영상에서 상대적으로 밝게 보입니다.
+
+          </div>
+
+        </section>
+
+
+        <!-- 3 -->
+
+        <section
+          id="lectureCT"
+          class="lecture-content-section"
+        >
+
+          <h2>
+            3. CT의 기본 원리
+          </h2>
+
+          <p>
+            CT는 여러 방향에서 X-ray를 조사하고
+            각 방향에서 얻은 attenuation 정보를
+            컴퓨터로 재구성하여 단면 영상을 생성합니다.
+          </p>
+
+          <p>
+            따라서 Radiography가 여러 구조가 겹쳐 보이는
+            projection image라면,
+            CT는 특정 단면의 구조를 분리해서 확인할 수 있다는
+            중요한 차이가 있습니다.
+          </p>
+
+
+          <h3>
+            Hounsfield Unit
+          </h3>
+
+          <p>
+            CT에서는 각 voxel의 상대적인 X-ray attenuation을
+            Hounsfield Unit, 즉 HU로 표현합니다.
+          </p>
+
+
+          <table class="hu-table">
+
+            <thead>
+              <tr>
+                <th>조직</th>
+                <th>대표적인 HU</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td>Air</td>
+                <td>약 -1000 HU</td>
+              </tr>
+
+              <tr>
+                <td>Fat</td>
+                <td>약 -100 ~ -50 HU</td>
+              </tr>
+
+              <tr>
+                <td>Water</td>
+                <td>0 HU</td>
+              </tr>
+
+              <tr>
+                <td>Soft tissue</td>
+                <td>약 +20 ~ +80 HU</td>
+              </tr>
+
+              <tr>
+                <td>Bone</td>
+                <td>수백 ~ +1000 HU 이상</td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+
+          <div class="concept-box">
+
+            <strong>
+              기억할 점
+            </strong>
+
+            HU는 절대적인 조직 진단값이 아니라
+            attenuation을 정량적으로 표현하는 척도입니다.
+            실제 진단에서는 morphology와 enhancement pattern 등을
+            함께 평가해야 합니다.
+
+          </div>
+
+        </section>
+
+
+        <!-- 4 -->
+
+        <section
+          id="lectureMRI"
+          class="lecture-content-section"
+        >
+
+          <h2>
+            4. MRI의 기본 원리
+          </h2>
+
+          <p>
+            MRI는 X-ray를 사용하는 CT와 달리
+            강한 magnetic field와 radiofrequency pulse를 이용하여
+            영상을 만듭니다.
+          </p>
+
+          <p>
+            인체 내 hydrogen proton은 외부 magnetic field에 의해
+            일정한 방향성을 가지게 되고,
+            RF pulse를 가한 뒤 원래 상태로 회복되는 과정에서
+            signal을 발생시킵니다.
+          </p>
+
+
+          <h3>
+            주요 MRI contrast
+          </h3>
+
+          <ul>
+
+            <li>
+              T1 relaxation
+            </li>
+
+            <li>
+              T2 relaxation
+            </li>
+
+            <li>
+              Proton density
+            </li>
+
+            <li>
+              Diffusion
+            </li>
+
+            <li>
+              Susceptibility
+            </li>
+
+          </ul>
+
+
+          <div class="concept-box">
+
+            <strong>
+              MRI의 특징
+            </strong>
+
+            MRI signal intensity는 단순한 조직 밀도만으로 결정되지 않고,
+            sequence와 imaging parameter에 따라 크게 달라집니다.
+
+          </div>
+
+        </section>
+
+
+        <!-- 5 -->
+
+        <section
+          id="lectureUS"
+          class="lecture-content-section"
+        >
+
+          <h2>
+            5. Ultrasound의 기본 원리
+          </h2>
+
+          <p>
+            Ultrasound는 transducer에서 발생한 고주파 음파가
+            조직의 경계에서 반사되어 돌아오는 신호를 이용합니다.
+          </p>
+
+          <p>
+            음향 임피던스가 서로 다른 조직의 경계에서는
+            일부 음파가 반사되고,
+            이 신호의 강도와 돌아오는 시간을 분석하여
+            실시간 영상을 생성합니다.
+          </p>
+
+
+          <div class="concept-box">
+
+            <strong>
+              Ultrasound의 장점
+            </strong>
+
+            전리방사선을 사용하지 않으며,
+            실시간 검사와 dynamic assessment가 가능하고,
+            Doppler를 통해 혈류도 평가할 수 있습니다.
+
+          </div>
+
+        </section>
+
+
+        <!-- 6 -->
+
+        <section
+          id="lectureSummary"
+          class="lecture-content-section"
+        >
+
+          <h2>
+            6. 정리
+          </h2>
+
+          <p>
+            영상검사는 모두 같은 방식으로 영상을 만드는 것이 아닙니다.
+            각 modality는 서로 다른 물리적 원리를 이용하여
+            인체의 서로 다른 특성을 보여줍니다.
+          </p>
+
+          <ul>
+
+            <li>
+              Radiography: X-ray attenuation
+            </li>
+
+            <li>
+              CT: X-ray attenuation의 단면 재구성
+            </li>
+
+            <li>
+              MRI: proton의 magnetic property와 relaxation
+            </li>
+
+            <li>
+              Ultrasound: acoustic reflection
+            </li>
+
+            <li>
+              Nuclear Medicine: radiotracer distribution
+            </li>
+
+          </ul>
+
+        </section>
+
+
+        <!-- BOTTOM NAV -->
+
+        <div class="chapter-nav">
+
+          <button
+            class="nav-button"
+            onclick="showHome()"
+          >
+            ← 강의 홈
+          </button>
+
+
+          <button
+            class="nav-button primary"
+            onclick="showComingSoon('Chapter 02: Radiography')"
+          >
+            Chapter 02 →
+          </button>
+
+        </div>
+
+      </main>
+
+
+      <!-- RIGHT TOC -->
+
+      <aside class="toc">
+
+        <div class="toc-title">
+          ON THIS PAGE
+        </div>
+
+        <a href="#lectureIntro">
+          영상의학이란?
+        </a>
+
+        <a href="#lectureXray">
+          X-ray와 attenuation
+        </a>
+
+        <a href="#lectureCT">
+          CT의 기본 원리
+        </a>
+
+        <a href="#lectureMRI">
+          MRI의 기본 원리
+        </a>
+
+        <a href="#lectureUS">
+          Ultrasound
+        </a>
+
+        <a href="#lectureSummary">
+          정리
+        </a>
+
+      </aside>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       MODAL
+  ====================================================== -->
+
+  <div
+    class="modal-bg"
+    id="modalBg"
+    onclick="closeModal(event)"
+  >
+
+    <div class="modal">
+
+      <h3 id="modalTitle">
+        Title
+      </h3>
+
+      <p id="modalText">
+        Description
+      </p>
+
+      <button
+        class="button"
+        onclick="closeModal()"
+      >
+        닫기
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
+
+  <script>
+
+    /* -------------------------
+       PAGE ROUTING
+    -------------------------- */
+
+    function showPage(pageId) {
+
+      const pages = document.querySelectorAll(".page");
+
+      pages.forEach(function(page) {
+        page.classList.remove("active");
+      });
+
+      const targetPage =
+        document.getElementById(pageId);
+
+      targetPage.classList.add("active");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "instant"
+      });
+
+    }
+
+
+    function showHome() {
+
+      showPage("homePage");
+
+      history.pushState(
+        { page: "home" },
+        "",
+        "#home"
+      );
+
+    }
+
+
+    function goToChapter1() {
+
+      showPage("chapter1Page");
+
+      history.pushState(
+        { page: "chapter1" },
+        "",
+        "#chapter1"
+      );
+
+    }
+
+
+    /* -------------------------
+       MODAL
+    -------------------------- */
+
+    function openModal(title, text) {
+
+      document.getElementById(
+        "modalTitle"
+      ).innerText = title;
+
+      document.getElementById(
+        "modalText"
+      ).innerText = text;
+
+      document.getElementById(
+        "modalBg"
+      ).classList.add("active");
+
+    }
+
+
+    function closeModal(event) {
+
+      const modalBg =
+        document.getElementById(
+          "modalBg"
+        );
+
+      if (
+        !event ||
+        event.target === modalBg ||
+        event.target.tagName === "BUTTON"
+      ) {
+
+        modalBg.classList.remove(
+          "active"
+        );
+
+      }
+
+    }
+
+
+    function showComingSoon(chapterName) {
+
+      openModal(
+        chapterName,
+        "아직 작성되지 않은 강의입니다. 추후 해당 Chapter의 강의 내용을 연결할 수 있습니다."
+      );
+
+    }
+
+
+    /* -------------------------
+       BROWSER BACK / FORWARD
+    -------------------------- */
+
+    window.addEventListener(
+      "popstate",
+      function() {
+
+        if (
+          window.location.hash ===
+          "#chapter1"
+        ) {
+
+          showPage(
+            "chapter1Page"
+          );
+
+        } else {
+
+          showPage(
+            "homePage"
+          );
+
+        }
+
+      }
+    );
+
+
+    /* -------------------------
+       INITIAL ROUTE
+    -------------------------- */
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function() {
+
+        if (
+          window.location.hash ===
+          "#chapter1"
+        ) {
+
+          showPage(
+            "chapter1Page"
+          );
+
+        } else {
+
+          showPage(
+            "homePage"
+          );
+
+        }
+
+      }
+    );
+
+
+    /* -------------------------
+       ESC CLOSE MODAL
+    -------------------------- */
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (
+          event.key === "Escape"
+        ) {
+
+          document
+            .getElementById(
+              "modalBg"
+            )
+            .classList.remove(
+              "active"
+            );
+
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
